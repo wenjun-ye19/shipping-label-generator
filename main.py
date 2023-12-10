@@ -15,8 +15,6 @@
 # Some house do not have unit number and/or building name
 # PO Box is optional as not all have one.
 
-# Next step:
-# Create a login mechanism and interface
 
 def get_label(*args, **kwargs):
     # Output Recipient Name
