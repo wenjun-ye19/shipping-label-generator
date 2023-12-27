@@ -1,5 +1,3 @@
-# Note: *args = tuple, **kwargs = dict
-
 # The purpose of this program is to create 
 # a shipping label through user input
 
@@ -17,8 +15,24 @@
 
 
 def get_label(*args, **kwargs):
+    """
+    Prints the output recipient name and address based on the given arguments and keyword arguments.
+
+    Parameters:
+    *args: Variable-length argument list of recipient names.
+    **kwargs: Arbitrary keyword arguments for address details. Accepted keywords are:
+        - block_num (str): The block number of the address.
+        - street (str): The street name of the address.
+        - unit (str): The unit number of the address.
+        - building_name (str): The name of the building.
+        - postal_code (str): The postal code of the address.
+        - po_box (str): The PO box number of the address.
+
+    Returns:
+    None
+    """
     # Output Recipient Name
-    if len(args) != 0:
+    if args:
         for name in args:
             print(name, end=" ")
     else:
@@ -28,32 +42,27 @@ def get_label(*args, **kwargs):
     print()
     
     if "po_box" not in kwargs:
-        
         if "building_name" not in kwargs:
-            
             if "unit" not in kwargs:
-                
-                if "block_num" or "street" or "postal_code" not in kwargs:
+                if not any(key in kwargs for key in ("block_num", "street", "postal_code")):
                     print("Not a valid address!")
                     print("Please retype the address.")
                 else:
-                    print(f"{kwargs.get("block_num")} {kwargs.get("street")}")
-                    print(f"{kwargs.get("postal_code")}")
+                    print(f"{kwargs.get('block_num')} {kwargs.get('street')}")
+                    print(f"{kwargs.get('postal_code')}")
             else:
-                print(f"{kwargs.get("block_num")} {kwargs.get("street")}")
-                print(f"{kwargs.get("unit")}")
-                print(f"{kwargs.get("postal_code")}")
-        
+                print(f"{kwargs.get('block_num')} {kwargs.get('street')}")
+                print(f"{kwargs.get('unit')}")
+                print(f"{kwargs.get('postal_code')}")
         else:
-            print(f"{kwargs.get("block_num")} {kwargs.get("street")}")
-            print(f"{kwargs.get("unit")} {kwargs.get("building_name")}")
-            print(f"{kwargs.get("postal_code")}")
-    
+            print(f"{kwargs.get('block_num')} {kwargs.get('street')}")
+            print(f"{kwargs.get('unit')} {kwargs.get('building_name')}")
+            print(f"{kwargs.get('postal_code')}")
     else:
-        print(f"{kwargs.get("block_num")} {kwargs.get("street")}")
-        print(f"{kwargs.get("unit")} {kwargs.get("building_name")}")
-        print(f"{kwargs.get("postal_code")}")
-        print(f"{kwargs.get("po_box")}")
+        print(f"{kwargs.get('block_num')} {kwargs.get('street')}")
+        print(f"{kwargs.get('unit')} {kwargs.get('building_name')}")
+        print(f"{kwargs.get('postal_code')}")
+        print(f"{kwargs.get('po_box')}")
 
 
 
